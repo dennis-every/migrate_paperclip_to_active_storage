@@ -1,0 +1,33 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="file-inputs">
+    <% if form.object.new_record? %>
+      <%= form.file_field :file, as: :file, label:false, required:true, id:'file_field', class:'form-control' %>
+    <% else %>
+      <% if @task.file.attached? %>
+        <%= image_tag @task.file, class:'image' %>
+      <% end %>
+      <%= form.file_field :file, as: :file, label:false, id:'file_field', class:'form-control' %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

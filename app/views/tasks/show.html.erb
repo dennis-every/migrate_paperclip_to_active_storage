@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Archivo:</strong>
+  <% if @task.file.attached? %>
+    <%= image_tag @task.file, class:'image' %>
+  <% end %>
+  <%#= link_to '<i class="glyphicon glyphicon-download-alt"></i>&nbsp;DESCARGAR'.html_safe, rails_blob_path(@task.file, disposition: "attachment"), id:'file_field'  if @task.file.attached?  %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
